@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Справочник эстетической медицины | Навигатор по косметологии</title>
+  <!-- Google Fonts: Cormorant Garamond (Editorial Serif), Plus Jakarta Sans (Clean Medical Sans), JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            moxie: {
+              bg: '#FAF7F2',
+              card: '#FFFFFF',
+              sage: '#F2EFE9',
+              sageDark: '#E5DFD3',
+              forest: '#234233',
+              forestHover: '#193024',
+              terracotta: '#D96B43',
+              terracottaLight: '#F9EBE6',
+              ink: '#1C2420',
+              muted: '#5A655E',
+              border: '#E6E1D6'
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          },
+          boxShadow: {
+            'soft': '0 10px 30px -10px rgba(28, 36, 32, 0.06)',
+            'hover': '0 20px 40px -15px rgba(35, 66, 51, 0.12)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #FAF7F2;
+      color: #1C2420;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      scroll-behavior: smooth;
+    }
+    .serif-heading {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      letter-spacing: -0.01em;
+    }
+    /* Стилизация скроллбара */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FAF7F2;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D5CFC2;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #234233;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-moxie-forest selection:text-white">
+
+  <!-- ВЕРХНЯЯ ПАНЕЛЬ НАВИГАЦИИ -->
+  <header class="sticky top-0 z-40 bg-moxie-bg/90 backdrop-blur-md border-b border-moxie-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Логотип -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-moxie-forest flex items-center justify-center text-white serif-heading text-2xl font-semibold">
+          ОМ
+        </div>
+        <div>
+          <span class="block text-xs uppercase tracking-widest text-moxie-muted font-medium">Открытый гид врача-косметолога</span>
+          <span class="serif-heading text-2xl font-semibold text-moxie-ink">Эстетический Справочник</span>
+        </div>
+      </div>
+
+      <!-- Навигационные ссылки -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-moxie-muted">
+        <a href="#catalog" class="hover:text-moxie-forest transition-colors">Каталог процедур</a>
+        <a href="#trends" class="hover:text-moxie-forest transition-colors">Новинки 2026</a>
+        <a href="#Nuances" class="hover:text-moxie-forest transition-colors">Врачебные разборы</a>
+        <button onclick="openDesignModal()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-moxie-sage text-moxie-forest font-mono text-xs hover:bg-moxie-sageDark transition-colors">
+          <span>{}</span> DESIGN.md
+        </button>
+      </nav>
+
+      <!-- Кнопка Telegram -->
+      <div class="flex items-center gap-3">
+        <a href="https://t.me/drMikheevaOlga" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-moxie-forest text-white text-sm font-medium hover:bg-moxie-forestHover transition-all shadow-sm">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+          </svg>
+          <span>Задать вопрос врачу</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ГЛАВНЫЙ ЭКРАН (HERO) В СТИЛЕ MOXIE CARE -->
+  <section class="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-28 border-b border-moxie-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Левая колонка: Типографика и Поиск -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-moxie-terracottaLight text-moxie-terracotta text-xs font-semibold tracking-wide uppercase">
+            <span class="w-2 h-2 rounded-full bg-moxie-terracotta animate-pulse"></span>
+            Честная энциклопедия без маркетингового шума
+          </div>
+          
+          <h1 class="serif-heading text-4xl sm:text-6xl font-semibold text-moxie-ink leading-[1.08]">
+            Всё о современной косметологии — <span class="italic font-normal text-moxie-forest">взглядом практикующего врача.</span>
+          </h1>
+          
+          <p class="text-base sm:text-lg text-moxie-muted leading-relaxed max-w-2xl">
+            Разбираем устоявшиеся золотые стандарты и громкие новинки 2026 года: как процедуры работают на уровне тканей, кому они действительно нужны, а в каких случаях станут пустой тратой бюджета.
+          </p>
+
+          <!-- Умный поиск -->
+          <div class="pt-2 max-w-xl">
+            <div class="relative flex items-center">
+              <svg class="w-5 h-5 text-moxie-muted absolute left-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+              <input
+                id="searchInput"
+                type="text"
+                oninput="filterProcedures()"
+                placeholder="Найти процедуру или проблему (например: игольчатый RF, полимолочная, розацеа, отёки)..."
+                class="w-full pl-12 pr-28 py-4 rounded-2xl bg-white border border-moxie-border text-sm text-moxie-ink placeholder-moxie-muted/70 focus:outline-none focus:border-moxie-forest shadow-soft transition-all"
+              />
+              <button onclick="document.getElementById('catalog').scrollIntoView()" class="absolute right-2 px-4 py-2.5 rounded-xl bg-moxie-forest text-white text-xs font-medium hover:bg-moxie-forestHover transition-colors">
+                Искать
+              </button>
+            </div>
+            <!-- Быстрые теги -->
+            <div class="flex flex-wrap items-center gap-2 mt-3 text-xs text-moxie-muted">
+              <span>Часто ищут:</span>
+              <button onclick="quickSearch('Ботулинотерапия')" class="px-2.5 py-1 rounded-full bg-moxie-sage hover:bg-moxie-sageDark text-moxie-ink transition-colors">Ботулинотерапия</button>
+              <button onclick="quickSearch('Morpheus')" class="px-2.5 py-1 rounded-full bg-moxie-sage hover:bg-moxie-sageDark text-moxie-ink transition-colors">Игольчатый RF</button>
+              <button onclick="quickSearch('Экзосомы')" class="px-2.5 py-1 rounded-full bg-moxie-sage hover:bg-moxie-sageDark text-moxie-ink transition-colors">Экзосомы и PDRN</button>
+              <button onclick="quickSearch('Полимолочная')" class="px-2.5 py-1 rounded-full bg-moxie-sage hover:bg-moxie-sageDark text-moxie-ink transition-colors">Коллагеностимуляция</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Правая колонка: Карточка подхода врача в стиле Moxie Care -->
+        <div class="lg:col-span-5">
+          <div class="bg-white rounded-3xl p-7 sm:p-8 border border-moxie-border shadow-soft relative">
+            <div class="flex items-start justify-between gap-4 pb-6 border-b border-moxie-border">
+              <div>
+                <span class="text-xs font-mono uppercase tracking-wider text-moxie-terracotta">Принцип справочника</span>
+                <h2 class="serif-heading text-2xl sm:text-3xl font-semibold text-moxie-ink mt-1">Анатомия важнее трендов</h2>
+              </div>
+              <span class="px-3 py-1 rounded-full bg-moxie-sage text-moxie-forest text-xs font-medium">MD • Дерматолог</span>
+            </div>
+
+            <div class="space-y-4 py-6 text-sm text-moxie-muted leading-relaxed">
+              <div class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-moxie-sage text-moxie-forest flex items-center justify-center font-semibold text-xs shrink-0 mt-0.5">1</span>
+                <p><strong class="text-moxie-ink">Честный паспорт процедуры:</strong> реальный срок реабилитации, уровень дискомфорта и когда на самом деле виден пик результата.</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-moxie-sage text-moxie-forest flex items-center justify-center font-semibold text-xs shrink-0 mt-0.5">2</span>
+                <p><strong class="text-moxie-ink">Секция «Врачебный нюанс»:</strong> разбираем, почему одна и та же процедура даёт вау-эффект на усталом морфотипе и усиливает отёк на деформационном.</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-moxie-sage text-moxie-forest flex items-center justify-center font-semibold text-xs shrink-0 mt-0.5">3</span>
+                <p><strong class="text-moxie-ink">Прямая связь:</strong> если после чтения остался вопрос по вашей ситуации — переходите в Telegram одним кликом.</p>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-moxie-border flex items-center justify-between">
+              <div class="text-xs text-moxie-muted">
+                База обновляется на основе клинических видеолекций
+              </div>
+              <a href="#catalog" class="text-xs font-semibold text-moxie-forest hover:underline">
+                Перейти к разборам →
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- КАТАЛОГ ПРОЦЕДУР И ФИЛЬТРЫ -->
+  <section id="catalog" class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Заголовок и переключатель реабилитации -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-moxie-muted">Структурированная база знаний</span>
+          <h2 class="serif-heading text-3xl sm:text-5xl font-semibold text-moxie-ink mt-1">Навигатор по методикам</h2>
+        </div>
+
+        <!-- Переключатель "Без реабилитации" -->
+        <label class="inline-flex items-center gap-3 cursor-pointer bg-white px-4 py-2.5 rounded-2xl border border-moxie-border shadow-sm self-start md:self-auto">
+          <input type="checkbox" id="noDowntimeToggle" onchange="filterProcedures()" class="sr-only peer">
+          <div class="w-10 h-6 bg-moxie-sage peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all relative peer-checked:bg-moxie-forest"></div>
+          <span class="text-xs sm:text-sm font-medium text-moxie-ink">Только «на выход» (без реабилитации)</span>
+        </label>
+      </div>
+
+      <!-- Кнопки категорий -->
+      <div class="flex flex-wrap gap-2 mb-10" id="categoryTabs">
+        <button onclick="setCategory('all')" data-cat="all" class="cat-btn px-5 py-2.5 rounded-full text-sm font-medium bg-moxie-forest text-white transition-all">
+          Все методики (6)
+        </button>
+        <button onclick="setCategory('inject')" data-cat="inject" class="cat-btn px-5 py-2.5 rounded-full text-sm font-medium bg-white border border-moxie-border text-moxie-ink hover:bg-moxie-sage transition-all">
+          Инъекционная косметология
+        </button>
+        <button onclick="setCategory('hardware')" data-cat="hardware" class="cat-btn px-5 py-2.5 rounded-full text-sm font-medium bg-white border border-moxie-border text-moxie-ink hover:bg-moxie-sage transition-all">
+          Аппаратные технологии
+        </button>
+        <button onclick="setCategory('novelties')" data-cat="novelties" class="cat-btn px-5 py-2.5 rounded-full text-sm font-medium bg-white border border-moxie-border text-moxie-ink hover:bg-moxie-sage transition-all">
+          ✨ Новинки и тренды 2026
+        </button>
+        <button onclick="setCategory('peels')" data-cat="peels" class="cat-btn px-5 py-2.5 rounded-full text-sm font-medium bg-white border border-moxie-border text-moxie-ink hover:bg-moxie-sage transition-all">
+          Эстетика и пилинги
+        </button>
+      </div>
+
+      <!-- Сетка карточек -->
+      <div id="proceduresGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+        <!-- Карточки рендерятся через JS -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- БЛОК: КАК МЫ ПРЕВРАЩАЕМ ВИДЕОЛЕКЦИИ В СТАТЬИ -->
+  <section id="Nuances" class="py-16 bg-moxie-sage/70 border-y border-moxie-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7 space-y-4">
+          <span class="text-xs font-mono uppercase tracking-widest text-moxie-terracotta">Живая база знаний</span>
+          <h3 class="serif-heading text-3xl sm:text-4xl font-semibold text-moxie-ink">
+            Не нашли разбор интересующей процедуры или нового препарата?
+          </h3>
+          <p class="text-moxie-muted text-sm sm:text-base leading-relaxed">
+            Этот портал постоянно пополняется авторскими разборами и материалами из моих клинических видеолекций. Если вы прочитали об инновационной методике или сомневаетесь, подойдёт ли процедура вашему морфотипу лица — напишите мне в Telegram. Я подскажу лично или подготовлю подробный разбор на сайте.
+          </p>
+        </div>
+        <div class="lg:col-span-5 flex lg:justify-end">
+          <div class="bg-white p-6 rounded-3xl border border-moxie-border shadow-soft w-full max-w-md space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-2xl bg-moxie-forest text-white flex items-center justify-center font-serif text-xl font-semibold">
+                TG
+              </div>
+              <div>
+                <div class="text-sm font-semibold text-moxie-ink">Прямой диалог с врачом</div>
+                <div class="text-xs text-moxie-muted">Отвечаю в свободное от приёмов время</div>
+              </div>
+            </div>
+            <a href="https://t.me/drMikheevaOlga" target="_blank" rel="noopener noreferrer"
+               class="w-full py-3.5 px-5 rounded-2xl bg-moxie-forest hover:bg-moxie-forestHover text-white text-sm font-medium flex items-center justify-center gap-2 transition-all">
+              <span>Написать в Telegram (@drMikheevaOlga)</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ФУТЕР -->
+  <footer class="py-12 text-center text-xs text-moxie-muted border-t border-moxie-border">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 Эстетический Справочник врача-косметолога. Дизайн-система: Moxie Care (GradientDeck UI).</p>
+      <p>Материалы носят информационно-просветительский характер и не заменяют очную консультацию.</p>
+    </div>
+  </footer>
+
+  <!-- МОДАЛЬНОЕ ОКНО: ПОЛНЫЙ РАЗБОР ПРОЦЕДУРЫ (ШАБЛОН ПОД ВИДЕОЛЕКЦИИ) -->
+  <div id="articleModal" class="fixed inset-0 z-50 hidden bg-moxie-ink/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-moxie-bg rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto border border-moxie-border shadow-2xl p-6 sm:p-10 relative my-8">
+      <button onclick="closeArticleModal()" class="sticky top-2 float-right w-10 h-10 rounded-full bg-white border border-moxie-border flex items-center justify-center text-moxie-ink hover:bg-moxie-sage transition-colors">
+        ✕
+      </button>
+      <div id="articleModalContent"></div>
+    </div>
+  </div>
+
+  <!-- МОДАЛЬНОЕ ОКНО: ФАЙЛ DESIGN.MD (MOXIE CARE) -->
+  <div id="designModal" class="fixed inset-0 z-50 hidden bg-moxie-ink/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col border border-moxie-border shadow-2xl overflow-hidden">
+      <div class="p-5 border-b border-moxie-border flex items-center justify-between bg-moxie-sage">
+        <div class="flex items-center gap-2">
+          <span class="font-mono text-xs px-2.5 py-1 rounded bg-moxie-forest text-white">DESIGN.md</span>
+          <span class="text-sm font-semibold text-moxie-ink">Спецификация Moxie Care для ИИ-агентов</span>
+        </div>
+        <button onclick="closeDesignModal()" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-moxie-ink">✕</button>
+      </div>
+      <pre id="designMdText" class="p-6 text-xs font-mono text-moxie-ink bg-moxie-bg overflow-y-auto flex-1 leading-relaxed whitespace-pre-wrap"># DESIGN.md — Moxie Care Aesthetic System
+
+## 1. Brand Philosophy & Vibe
+- **Aesthetic**: Warm Clinical Minimalism, High-Trust MedSpa, Editorial Healthcare.
+- **Tone**: Calm, authoritative, transparent, tactile. Never sterile-cold blue.
+
+## 2. Color Palette
+- **Background Primary**: `#FAF7F2` (Warm Alabaster / Soft Cream)
+- **Surface / Card**: `#FFFFFF` (Pure White with `#E6E1D6` 1px border)
+- **Secondary Surface**: `#F2EFE9` (Soft Botanical Sage / Stone)
+- **Primary Brand Accent**: `#234233` (Deep Botanical Forest Green)
+- **Highlight / Badge Accent**: `#D96B43` (Warm Terracotta)
+- **Text Primary**: `#1C2420` (Deep Charcoal Ink)
+- **Text Muted**: `#5A655E` (Muted Herb Gray)
+
+## 3. Typography
+- **Headings (Serif)**: `Cormorant Garamond` or `Instrument Serif` — weight 600, tight tracking (`-0.01em`), italic accents for key clinical terms.
+- **Body & UI (Sans)**: `Plus Jakarta Sans` — weights 400, 500, 600. Clean geometric legibility for long-form medical guides.
+- **Metadata / Clinical Passports (Mono)**: `JetBrains Mono` — uppercase tracking for dosage, downtime, and duration metrics.
+
+## 4. Component Rules
+- **Cards**: `border-radius: 24px` (`rounded-3xl`), `1px solid #E6E1D6`, subtle warm shadow.
+- **Buttons**: Pill-shaped (`rounded-full`), primary in `#234233` with white text.
+- **Doctor's Nuance Callout**: Highlighted box in `#F2EFE9` with left border `#234233`.</pre>
+      <div class="p-4 border-t border-moxie-border bg-white flex justify-end gap-3">
+        <button onclick="copyDesignMd()" id="copyBtn" class="px-5 py-2.5 rounded-full bg-moxie-forest text-white text-xs font-medium hover:bg-moxie-forestHover transition-colors">
+          Скопировать DESIGN.md
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ДАННЫЕ И ЛОГИКА КАТАЛОГА -->
+  <script>
+    const procedures = [
+      {
+        id: 'botox-fullface',
+        category: 'inject',
+        categoryLabel: 'Инъекционная база',
+        badge: 'Золотой стандарт',
+        badgeColor: 'bg-moxie-sage text-moxie-forest',
+        title: 'Ботулинотерапия Full Face',
+        subtitle: 'Гармонизация мимики лица и шеи (платизмы) с сохранением живой эмоции',
+        downtime: 'Без реабилитации',
+        noDowntime: true,
+        duration: '4–6 месяцев',
+        pain: 'Минимальная (1/5)',
+        summary: 'Работа не только с морщинами лба и межбровья, но и с мышцами-депрессорами нижней трети лица, тяжами платизмы и овалом.',
+        nuance: 'Главная ошибка — изолированно «выключать» лоб у пациентов со склонностью к отёкам верхних век или при низком положении бровей. Грамотный протокол Full Face всегда учитывает баланс мышц-леваторов и депрессоров, чтобы взгляд открылся, а не опустился.',
+        mechanism: 'Ботулинический нейропротеин типа А временно блокирует передачу нервного импульса к мышечному волокну. Мышца расслабляется, кожа над ней расправляется, а заломы перестают углубляться.',
+        indications: ['Мимические заломы лба, межбровья и периорбитальной зоны', 'Гипертонус подбородка («булыжный подбородок») и опущенные уголки губ', 'Тяжи платизмы и нечёткий шейно-подбородочный угол', 'Бруксизм и гипертонус жевательных мышц'],
+        contraindications: ['Беременность и период лактации', 'Острые инфекционные заболевания', 'Миастения и нарушения нервно-мышечной передачи']
+      },
+      {
+        id: 'microneedle-rf',
+        category: 'hardware',
+        categoryLabel: 'Аппаратные методики',
+        badge: 'Хит лифтинга',
+        badgeColor: 'bg-moxie-sage text-moxie-forest',
+        title: 'Микроигольчатый RF-лифтинг (Morpheus8 / Scarlet)',
+        subtitle: 'Фракционное ремоделирование дермы и уплотнение кожного лоскута',
+        downtime: '2–5 дней (отёк, гиперемия)',
+        noDowntime: false,
+        duration: '12–18 месяцев',
+        pain: 'Чувствительно (анестезия)',
+        summary: 'Сокращение площади кожного лоскута, работа с пористостью, постакне, дряблостью век, шеи и нижней трети лица.',
+        nuance: 'Аппарат сам по себе не гарантирует результат — всё решают глубина подачи импульса и подготовка тканей. Если кожа обезвожена или находится в дефиците белка/ферритина, агрессивный прогрев не даст качественного неоколлагеногенеза. Часто оптимально сочетать с биоревитализацией за 2 недели до процедуры.',
+        mechanism: 'Микроиглы доставляют радиочастотную энергию строго на заданную глубину (от 0.5 до 4 мм), прогревая ткани до 60–70°C. Происходит контролируемая коагуляция старого коллагена и запуск синтеза нового плотного каркаса.',
+        indications: ['Снижение тургора и дряблость кожи лица, шеи, декольте', 'Расширенные поры и рубцы постакне', 'Нависание кожи верхнего и нижнего века', 'Локальные малярные и брыльные компартменты'],
+        contraindications: ['Наличие кардиостимулятора или металлических имплантов в зоне', 'Острая стадия розацеа или акне', 'Беременность и лактация']
+      },
+      {
+        id: 'pdrn-exosomes',
+        category: 'novelties',
+        categoryLabel: 'Новинки 2026',
+        badge: 'Тренд 2026',
+        badgeColor: 'bg-moxie-terracottaLight text-moxie-terracotta',
+        title: 'Полинуклеотиды (PDRN) и Экзосомальная терапия',
+        subtitle: 'Клеточная регенерация, работа с сосудистым компонентом и качеством дермы',
+        downtime: '0–1 день (папулы до 24ч)',
+        noDowntime: true,
+        duration: 'Курс 3–4 процедуры',
+        pain: 'Низкая (2/5)',
+        summary: 'Восстановление кожи после стресса, агрессивных лазеров, при розацеа, пигментации и возрастном истончении дермы без создания лишнего объёма.',
+        nuance: 'В отличие от классической гиалуроновой кислоты, полинуклеотиды (PDRN) не притягивают избыточную воду, поэтому это препарат выбора для пациентов с отёчным, деформационно-пастозным типом лица и тёмными кругами под глазами.',
+        mechanism: 'Фрагменты ДНК (полидезоксирибонуклеотиды) воздействуют на аденозиновые рецепторы A2A, снижая хроническое воспаление (inflammaging), нормализуя микроциркуляцию и стимулируя собственные фибробласты.',
+        indications: ['Пастозность, отёчность и синева в периорбитальной зоне', 'Чувствительная кожа с куперозом и розацеа', 'Подготовка и ускоренная реабилитация после аппаратных процедур', 'Тусклый цвет лица и фотоповреждение'],
+        contraindications: ['Индивидуальная непереносимость компонентов', 'Аутоиммунные патологии в стадии обострения', 'Беременность и лактация']
+      },
+      {
+        id: 'smas-ultraformer',
+        category: 'hardware',
+        categoryLabel: 'Аппаратные методики',
+        badge: 'Без повреждения кожи',
+        badgeColor: 'bg-moxie-sage text-moxie-forest',
+        title: 'Ультразвуковой SMAS-лифтинг (Ultraformer MPT)',
+        subtitle: 'Безоперационная подтяжка связочного аппарата и компактизация жировых пакетов',
+        downtime: 'Без реабилитации',
+        noDowntime: true,
+        duration: '12–18 месяцев',
+        pain: 'Умеренная (2.5/5)',
+        summary: 'Глубокая работа со связками, мышечно-апоневротическим слоем (SMAS) и уменьшение объёма малярных мешков или второго подбородка.',
+        nuance: 'Ультразвуковой SMAS-лифтинг не показан очень худым, мелкоморщинистым лицам с дефицитом подкожно-жировой клетчатки — избыточная компактизация может придать лицу усталый вид. Зато на плотных славянских лицах с «тяжёлой» нижней третью даёт выраженный лифтинг.',
+        mechanism: 'Сфокусированный ультразвук (HIFU) в линейном и микроимпульсном режиме точечно прогревает связки и поверхностные жировые пакеты на глубине 1.5, 3.0 и 4.5 мм, сокращая их объём и подтягивая ткани вверх.',
+        indications: ['Гравитационный птоз средней и нижней трети лица', 'Опущение брылей и нечёткий контур нижней челюсти', 'Локальные жировые ловушки в субментальной зоне (второй подбородок)', 'Отечно-деформационный тип старения'],
+        contraindications: ['Выраженный дефицит мягких тканей лица', 'Острые воспалительные процессы', 'Онкологические и тяжёлые эндокринные заболевания']
+      },
+      {
+        id: 'plla-collagen',
+        category: 'inject',
+        categoryLabel: 'Инъекционная база',
+        badge: 'Коллагеностимуляция',
+        badgeColor: 'bg-moxie-sage text-moxie-forest',
+        title: 'Полимолочная кислота (Sculptra / AestheFill)',
+        subtitle: 'Мощная стимуляция собственного коллагена I и III типа без эффекта «перекачанного лица»',
+        downtime: '1–2 дня (микропроколы канюлей)',
+        noDowntime: true,
+        duration: 'До 24 месяцев',
+        pain: 'Комфортно (канюля)',
+        summary: 'Постепенное уплотнение кожи лица, шеи, кистей рук и тела. Идеально для тех, кто хочет вернуть молодой каркас тканей без филлеров.',
+        nuance: 'Результат полимолочной кислоты нельзя оценивать через неделю: растворитель уходит за пару дней, а синтез нового коллагена вокруг микросфер PLLA разворачивается к 6–8 неделе и нарастает до полугода.',
+        mechanism: 'Микрочастицы поли-L-молочной кислоты равномерно распределяются в субдермальном слое с помощью атравматичной канюли, вызывая мягкий контролируемый отклик фибробластов и выработку плотного коллагенового матрикса.',
+        indications: ['Атоничная, тонкая, «пергаментная» кожа лица и шеи', 'Потеря объёма и плотности после резкого снижения веса', 'Мелкоморщинистый и усталый типы старения', 'Дряблость кожи декольте, внутренней поверхности плеч и живота'],
+        contraindications: ['Склонность к келоидным и гипертрофическим рубцам', 'Введение в зону губ и подвижного века (строго запрещено)', 'Аутоиммунные заболевания']
+      },
+      {
+        id: 'biorepeel-prx',
+        category: 'peels',
+        categoryLabel: 'Эстетика и пилинги',
+        badge: 'Всесезонно',
+        badgeColor: 'bg-moxie-terracottaLight text-moxie-terracotta',
+        title: 'Двухфазные биоревитализирующие пилинги',
+        subtitle: 'Сияние, сужение пор и выравнивание рельефа без крупнопластинчатого шелушения',
+        downtime: 'Без реабилитации',
+        noDowntime: true,
+        duration: 'Курс 4–6 процедур',
+        pain: 'Полностью комфортно',
+        summary: 'Быстрое обновление рогового слоя, осветление пигментации и себорегуляция с сохранением социальной активности.',
+        nuance: 'Несмотря на приставку «без шелушения», на обезвоженной или ретинизированной коже на 3-й день возможно лёгкое муковидное отшелушивание — поэтому в домашний уход обязательно вводится крем-восстановитель липидного барьера.',
+        mechanism: 'Липофильная фаза защищает эпидермальный барьер и препятствует окислению, а гидрофильная фаза (ТСА в модифицированной форме, лактобионовая и салициловая кислоты, аминокислоты) стимулирует обновление клеток дермы.',
+        indications: ['Тусклый цвет лица («кожа жителя мегаполиса»)', 'Гиперкератоз, расширенные поры и комедоны', 'Поверхностная поствоспалительная пигментация', 'Экспресс-подготовка перед важным мероприятием'],
+        contraindications: ['Нарушение целостности кожного покрова', 'Активный герпес в зоне нанесения', 'Аллергия на кислоты в составе']
+      }
+    ];
+
+    let activeCategory = 'all';
+
+    function renderProcedures() {
+      const grid = document.getElementById('proceduresGrid');
+      const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
+      const onlyNoDowntime = document.getElementById('noDowntimeToggle').checked;
+
+      const filtered = procedures.filter(item => {
+        const matchesCat = activeCategory === 'all' || item.category === activeCategory;
+        const matchesDowntime = !onlyNoDowntime || item.noDowntime;
+        const matchesSearch = !searchVal ||
+          item.title.toLowerCase().includes(searchVal) ||
+          item.subtitle.toLowerCase().includes(searchVal) ||
+          item.summary.toLowerCase().includes(searchVal) ||
+          item.nuance.toLowerCase().includes(searchVal) ||
+          item.indications.some(i => i.toLowerCase().includes(searchVal));
+        return matchesCat && matchesDowntime && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full bg-white rounded-3xl p-12 text-center border border-moxie-border">
+            <p class="serif-heading text-2xl text-moxie-ink mb-2">По вашему запросу процедур не найдено</p>
+            <p class="text-sm text-moxie-muted mb-6">Попробуйте сбросить фильтры или спросите меня напрямую в Telegram.</p>
+            <button onclick="resetFilters()" class="px-5 py-2.5 rounded-full bg-moxie-forest text-white text-xs font-medium">Сбросить фильтры</button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(item => `
+        <article class="bg-white rounded-3xl p-6 sm:p-7 border border-moxie-border shadow-soft hover:shadow-hover transition-all flex flex-col justify-between group">
+          <div>
+            <!-- Верхняя строка бейджей -->
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="text-xs font-mono uppercase tracking-wider text-moxie-muted">${item.categoryLabel}</span>
+              <span class="px-3 py-1 rounded-full text-xs font-semibold ${item.badgeColor}">${item.badge}</span>
+            </div>
+
+            <!-- Заголовок карточки -->
+            <h3 class="serif-heading text-2xl font-semibold text-moxie-ink group-hover:text-moxie-forest transition-colors leading-snug">
+              ${item.title}
+            </h3>
+            <p class="text-xs text-moxie-muted mt-1.5 leading-relaxed">
+              ${item.subtitle}
+            </p>
+
+            <!-- Паспорт процедуры -->
+            <div class="grid grid-cols-2 gap-2 my-5 p-3.5 rounded-2xl bg-moxie-bg border border-moxie-border/70 text-xs">
+              <div>
+                <span class="block text-[10px] font-mono uppercase text-moxie-muted">Реабилитация</span>
+                <span class="font-medium text-moxie-ink">${item.downtime}</span>
+              </div>
+              <div>
+                <span class="block text-[10px] font-mono uppercase text-moxie-muted">Эффект</span>
+                <span class="font-medium text-moxie-ink">${item.duration}</span>
+              </div>
+            </div>
+
+            <!-- Краткая суть -->
+            <p class="text-sm text-moxie-ink/90 leading-relaxed mb-4">
+              ${item.summary}
+            </p>
+
+            <!-- Плашка "Врачебный нюанс" -->
+            <div class="p-4 rounded-2xl bg-moxie-sage/70 border-l-4 border-moxie-forest text-xs text-moxie-ink leading-relaxed mb-6">
+              <span class="font-semibold text-moxie-forest block mb-1">🩺 Врачебный нюанс:</span>
+              ${item.nuance}
+            </div>
+          </div>
+
+          <!-- Нижние кнопки -->
+          <div class="pt-4 border-t border-moxie-border flex items-center justify-between gap-3">
+            <button onclick="openArticleModal('${item.id}')" class="text-xs font-semibold text-moxie-forest hover:underline flex items-center gap-1">
+              <span>Читать полный разбор</span>
+              <span>→</span>
+            </button>
+            <a href="https://t.me/drMikheevaOlga?text=${encodeURIComponent('Здравствуйте, Ольга! Прочитала на вашем сайте разбор про «' + item.title + '», хочу задать вопрос:')}"
+               target="_blank" rel="noopener noreferrer"
+               class="px-3.5 py-2 rounded-full bg-moxie-sage hover:bg-moxie-forest hover:text-white text-moxie-forest text-xs font-medium transition-colors">
+              Спросить в TG
+            </a>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function setCategory(cat) {
+      activeCategory = cat;
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        if (btn.dataset.cat === cat) {
+          btn.className = 'cat-btn px-5 py-2.5 rounded-full text-sm font-medium bg-moxie-forest text-white transition-all';
+        } else {
+          btn.className = 'cat-btn px-5 py-2.5 rounded-full text-sm font-medium bg-white border border-moxie-border text-moxie-ink hover:bg-moxie-sage transition-all';
+        }
+      });
+      renderProcedures();
+    }
+
+    function filterProcedures() {
+      renderProcedures();
+    }
+
+    function quickSearch(term) {
+      document.getElementById('searchInput').value = term;
+      renderProcedures();
+      document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function resetFilters() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('noDowntimeToggle').checked = false;
+      setCategory('all');
+    }
+
+    function openArticleModal(id) {
+      const item = procedures.find(p => p.id === id);
+      if (!item) return;
+
+      const content = document.getElementById('articleModalContent');
+      content.innerHTML = `
+        <div class="space-y-6">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="text-xs font-mono uppercase tracking-wider text-moxie-muted">${item.categoryLabel}</span>
+            <span class="px-3 py-1 rounded-full text-xs font-semibold ${item.badgeColor}">${item.badge}</span>
+          </div>
+
+          <h2 class="serif-heading text-3xl sm:text-5xl font-semibold text-moxie-ink leading-tight">${item.title}</h2>
+          <p class="text-base text-moxie-muted">${item.subtitle}</p>
+
+          <!-- Паспорт процедуры -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-5 rounded-2xl bg-white border border-moxie-border">
+            <div>
+              <span class="block text-xs font-mono uppercase text-moxie-muted">Реабилитация</span>
+              <span class="text-sm font-semibold text-moxie-ink">${item.downtime}</span>
+            </div>
+            <div>
+              <span class="block text-xs font-mono uppercase text-moxie-muted">Длительность эффекта</span>
+              <span class="text-sm font-semibold text-moxie-ink">${item.duration}</span>
+            </div>
+            <div>
+              <span class="block text-xs font-mono uppercase text-moxie-muted">Ощущения</span>
+              <span class="text-sm font-semibold text-moxie-ink">${item.pain}</span>
+            </div>
+          </div>
+
+          <!-- Механизм действия -->
+          <div class="space-y-2">
+            <h4 class="serif-heading text-2xl font-semibold text-moxie-ink">Как это работает на уровне тканей</h4>
+            <p class="text-sm sm:text-base text-moxie-ink/90 leading-relaxed">${item.mechanism}</p>
+          </div>
+
+          <!-- Врачебный нюанс -->
+          <div class="p-6 rounded-2xl bg-moxie-sage border-l-4 border-moxie-forest space-y-2">
+            <div class="text-xs font-mono uppercase tracking-wider text-moxie-forest font-semibold">🩺 Клинический опыт врача (о чём молчит реклама)</div>
+            <p class="text-sm sm:text-base text-moxie-ink leading-relaxed">${item.nuance}</p>
+          </div>
+
+          <!-- Показания и противопоказания -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+            <div class="bg-white p-5 rounded-2xl border border-moxie-border">
+              <h5 class="font-semibold text-sm text-moxie-forest mb-3">✓ Кому показана процедура</h5>
+              <ul class="space-y-2 text-xs sm:text-sm text-moxie-ink">
+                ${item.indications.map(i => `<li class="flex items-start gap-2"><span class="text-moxie-forest">•</span><span>${i}</span></li>`).join('')}
+              </ul>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-moxie-border">
+              <h5 class="font-semibold text-sm text-moxie-terracotta mb-3">✕ Основные противопоказания</h5>
+              <ul class="space-y-2 text-xs sm:text-sm text-moxie-ink">
+                ${item.contraindications.map(c => `<li class="flex items-start gap-2"><span class="text-moxie-terracotta">•</span><span>${c}</span></li>`).join('')}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Кнопка перехода в Telegram -->
+          <div class="pt-6 border-t border-moxie-border flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-xs text-moxie-muted">
+              Хотите узнать, подойдёт ли эта методика именно вам?
+            </div>
+            <a href="https://t.me/drMikheevaOlga?text=${encodeURIComponent('Здравствуйте, Ольга! Прочитала ваш разбор про «' + item.title + '», подскажите, пожалуйста:')}"
+               target="_blank" rel="noopener noreferrer"
+               class="w-full sm:w-auto px-6 py-3.5 rounded-full bg-moxie-forest hover:bg-moxie-forestHover text-white text-sm font-medium text-center transition-all">
+              Задать вопрос врачу в Telegram →
+            </a>
+          </div>
+        </div>
+      `;
+      document.getElementById('articleModal').classList.remove('hidden');
+    }
+
+    function closeArticleModal() {
+      document.getElementById('articleModal').classList.add('hidden');
+    }
+
+    function openDesignModal() {
+      document.getElementById('designModal').classList.remove('hidden');
+    }
+
+    function closeDesignModal() {
+      document.getElementById('designModal').classList.add('hidden');
+    }
+
+    function copyDesignMd() {
+      const text = document.getElementById('designMdText').innerText;
+      navigator.clipboard.writeText(text);
+      const btn = document.getElementById('copyBtn');
+      btn.innerText = 'Скопировано ✓';
+      setTimeout(() => { btn.innerText = 'Скопировать DESIGN.md'; }, 2000);
+    }
+
+    // Инициализация при загрузке
+    renderProcedures();
+  </script>
+</body>
+</html>
