@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<script>document.documentElement.classList.add("js");</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Графика и анимация — производственная спецификация | Эстетический Справочник</title>
+<meta name="description" content="Спецификация визуального контента: какие кадры брать из видео, какие схемы генерировать, как анимировать. С промптами, тайм-кодами и техническими параметрами.">
+<link rel="stylesheet" href="assets/moxie.css">
+<link rel="stylesheet" href="assets/responsive.css">
+<style>
+  .spec-table { width:100%; border-collapse:collapse; font-size:0.86rem; }
+  .spec-table th {
+    font-family:var(--mono); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase;
+    text-align:left; color:var(--text-muted); font-weight:500;
+    padding:10px 12px; border-bottom:1px solid var(--border); background:var(--surface-secondary);
+  }
+  .spec-table td { padding:11px 12px; border-bottom:1px solid var(--border); vertical-align:top; line-height:1.5; }
+  .spec-table tbody tr:last-child td { border-bottom:none; }
+  .spec-table code { font-family:var(--mono); font-size:0.76rem; background:var(--surface-secondary); padding:2px 5px; border-radius:4px; color:var(--brand); }
+
+  .prompt {
+    font-family:var(--mono); font-size:0.78rem; line-height:1.7;
+    background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--accent);
+    border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+    padding:16px 20px; margin:14px 0; white-space:pre-wrap; color:var(--text);
+    overflow-x:auto;
+  }
+  .prompt b { color:var(--accent); font-weight:500; }
+
+  .figblock {
+    border:1px solid var(--border); border-radius:var(--radius-card);
+    background:var(--surface); padding:36px; margin-bottom:24px;
+  }
+  .figblock__head { display:flex; gap:16px; align-items:baseline; flex-wrap:wrap; margin-bottom:8px; }
+  .figblock__num {
+    font-family:var(--serif); font-size:1.9rem; font-weight:600; color:var(--accent); line-height:1;
+  }
+  .figblock__head h3 { margin:0; }
+  .figblock h4 {
+    font-family:var(--mono); font-size:0.66rem; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--text-muted); font-weight:500; margin:24px 0 8px;
+  }
+  .figblock p { font-size:0.92rem; }
+  .figblock ul { font-size:0.9rem; padding-left:1.2em; }
+  .figblock li { margin-bottom:0.4em; }
+
+  .kv { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:var(--radius-sm); overflow:hidden; margin:16px 0; }
+  .kv > div { background:var(--bg-primary); padding:12px 16px; }
+  .kv dt { font-family:var(--mono); font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:4px; }
+  .kv dd { margin:0; font-family:var(--mono); font-size:0.82rem; color:var(--text); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">ОМ</span>
+      <span class="brand__text">
+        <span class="brand__title">Эстетический Справочник</span>
+        <span class="brand__sub">Открытый гид врача-косметолога</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="site-nav" aria-label="Основная навигация">
+      <a href="index.html">Главная</a>
+      <a href="baza-kozhi.html">База о коже</a>
+      <a href="katalog-procedur.html">Каталог процедур</a>
+      <a href="vrachebnye-razbory.html">Врачебные разборы</a>
+      <a href="novosti-2026.html">Новинки 2026</a>
+    </nav>
+
+    <button class="nav-toggle" type="button" aria-expanded="false"
+            aria-controls="site-nav" aria-label="Открыть меню">
+      <span class="nav-toggle__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+
+    <a class="btn btn--primary btn--sm header-cta" href="https://t.me/drMikheevaOlga" rel="noopener">Задать вопрос</a>
+  </div>
+</header>
+
+<main>
+
+<section style="padding-block:72px 48px;">
+  <div class="wrap wrap--wide">
+    <span class="eyebrow">Производственная документация</span>
+    <h1 style="max-width:22ch;">Графика и анимация</h1>
+    <p class="lede" style="margin-top:24px;">
+      Что взять из имеющихся видео, что сгенерировать заново, как анимировать
+      и в каком формате отдать в вёрстку. Восемь фигур, привязанных
+      к тайм-кодам ваших лекций и к структуре статьи.
+    </p>
+  </div>
+</section>
+
+<!-- ============ ASSET AUDIT ============ -->
+<section style="padding-block:0 64px;">
+  <div class="wrap wrap--wide">
+    <span class="eyebrow eyebrow--muted">Аудит исходников</span>
+    <h2 style="margin-bottom:12px;">Состояние на сегодня</h2>
+    <p style="color:var(--text-muted);max-width:62ch;margin-bottom:28px;">
+      Все восемь фигур собраны и встроены в статью. Семь из них — векторные схемы, которые управляются
+      одним параметром прогресса: их можно проиграть кнопкой или проскроллить ползунком под рисунком.
+      Одна — реальная микрофотография из лекции. Живой пример —
+      <a href="kozha-arkhitektura-kollagen.html">статья о коже</a>.
+    </p>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Фигура</th><th>Тип</th><th>Что анимируется</th><th>Вес</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Поперечный срез кожи</td><td>SVG</td><td>слои, волокна, капиллярные петли</td><td>10,5 КБ</td></tr>
+          <tr><td>Структура эпидермиса</td><td>SVG</td><td>миграция кератиноцита и потеря ядра</td><td>11,1 КБ</td></tr>
+          <tr><td>Сосудистые сети дермы</td><td>SVG</td><td>прорисовка глубокой и поверхностной сети</td><td>10,5 КБ</td></tr>
+          <tr><td>Фибробласт: две функции</td><td>SVG</td><td>синтез и деградация поочерёдно</td><td>8,6 КБ</td></tr>
+          <tr><td>Пять порядков сборки</td><td>SVG</td><td>стадии слева направо</td><td>8,6 КБ</td></tr>
+          <tr><td>Таймлайн неоколлагенеза</td><td>SVG</td><td>четыре перекрывающиеся фазы</td><td>5,3 КБ</td></tr>
+          <tr><td>Гиподерма</td><td>SVG</td><td>дольки, септы, три подслоя</td><td>8,8 КБ</td></tr>
+          <tr><td>SEM: фибробласты</td><td>WebP + JPEG</td><td>статичный кадр, без оживления</td><td>208 / 295 КБ</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="nuance" style="margin-top:32px;">
+      <span class="nuance__label">Инженерное решение</span>
+      <p>
+        Схемы не используют CSS-анимацию. Каждый рисунок — функция от одного числа от 0 до 1:
+        слой проявился, волокно прорисовалось, клетка сместилась. Поэтому анимацию можно
+        остановить в любой момент, пройти по кадрам ползунком и показать конкретную стадию
+        на приёме. При системной настройке «уменьшить движение» рисунок сразу показывается
+        в финальном виде, а панель управления не мешает.
+      </p>
+    </div>
+
+    <h2 style="margin-bottom:12px;">Что у вас уже есть</h2>
+    <p style="color:var(--text-muted);max-width:68ch;margin-bottom:32px;">
+      Плейлист «Кожа» — 4 видео, запись экрана с закадровым голосом. Плюс 14 слайдов
+      и черновик статьи. Материал содержательный, но в текущем виде для веб он
+      не годится: это скриншоты презентации с водяными знаками времени и курсором.
+    </p>
+
+    <div class="table-scroll" style="margin:0 0 32px;">
+      <table class="spec-table">
+        <thead>
+          <tr><th style="width:26%;">Исходник</th><th style="width:14%;">Длительность</th><th>Что внутри</th><th style="width:16%;">Пригодность</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>3JYwJ-paijY</code><br>Вводная лекция</td>
+            <td>~12 мин</td>
+            <td>3D-срез кожи, структура эпидермиса, клеточный состав дермы, гиподерма. Камера на экране, ручка-указка.</td>
+            <td>Только как референс. Кадры непригодны напрямую.</td>
+          </tr>
+          <tr>
+            <td><code>BHhixFvbqN4</code><br>Дерма и сосуды</td>
+            <td>~5 мин</td>
+            <td>Гистология дермы, схема ангиоархитектоники (глубокая и поверхностная сети), 3D-схема с придатками.</td>
+            <td>Схема сосудов — ценная, требует перерисовки.</td>
+          </tr>
+          <tr>
+            <td><code>prZ2wZq_l6s</code><br>Коллаген</td>
+            <td>12:15</td>
+            <td>Гистология, схема фибробласта, продукты синтеза, флуоресценция, SEM, синтез по Афанасьеву, 5 порядков, сроки 1+1–2 мес.</td>
+            <td><strong>Лучший материал.</strong> Есть SEM и флуоресценция — готовые изображения.</td>
+          </tr>
+          <tr>
+            <td><code>n68IfDAc8ho</code><br>Итоги</td>
+            <td>~8 мин</td>
+            <td>Говорящая голова, без слайдов. Тезисы о глубине введения и дефицитах.</td>
+            <td>Цитаты — да. Видео — нет.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="nuance">
+      <span class="nuance__label">Три проблемы, которые нужно решить до дизайна</span>
+      <p>
+        <strong>1. Права на изображения.</strong> Часть слайдов — сканы из учебников
+        (схема по Ю.&nbsp;И.&nbsp;Афанасьеву, гистологические атласы, скриншоты SEM из статей).
+        Для сайта это риск: нужна либо лицензия, либо собственная перерисовка.
+        Перерисовка схемы — это не «копирование», а законная практика при условии
+        самостоятельного исполнения.
+      </p>
+      <p>
+        <strong>2. Разрешение и чистота.</strong> Скриншоты экрана нельзя масштабировать:
+        на Retina они рассыпаются. Для веба нужен либо SVG (вектор), либо исходник
+        от 2400&nbsp;px по ширине.
+      </p>
+      <p>
+        <strong>3. Бренды в кадре.</strong> Фотографии банок BioME Collagen и NOW C-1000
+        в статье «без маркетинга» работают против вас. Даже если это личная покупка,
+        читатель видит продукт с логотипом рядом с медицинским текстом. Заменить
+        на нейтральную съёмку или на схему.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FRAME EXTRACTION ============ -->
+<section style="padding-block:0 64px;">
+  <div class="wrap wrap--wide">
+    <span class="eyebrow eyebrow--muted">Шаг 1</span>
+    <h2 style="margin-bottom:12px;">Карта кадров для выгрузки</h2>
+    <p style="color:var(--text-muted);max-width:68ch;margin-bottom:24px;">
+      Если нужны реальные гистологические и микроскопические изображения —
+      выгружайте кадры из этих точек. Команда для ffmpeg приведена ниже.
+      Кадры годятся для иллюстраций, но не для анимации: разрешение низкое,
+      есть курсор и муар от съёмки экрана.
+    </p>
+
+    <div class="table-scroll" style="margin:0;">
+      <table class="spec-table">
+        <thead>
+          <tr><th style="width:16%;">Видео</th><th style="width:14%;">Тайм-код</th><th>Кадр</th><th style="width:22%;">Куда пойдёт</th></tr>
+        </thead>
+        <tbody>
+          <tr><td rowspan="4"><code>prZ2wZq_l6s</code></td><td>00:48</td><td>Гистология: сосочковый и сетчатый слои, стрелки-разметка</td><td>Рис. 1 — вариант «реальная гистология» рядом со схемой</td></tr>
+          <tr><td>02:05</td><td>Схема фибробласта с органеллами</td><td>Рис. 4 — референс для перерисовки</td></tr>
+          <tr><td>04:55</td><td>Флуоресцентная микроскопия: колония фибробластов, синие ядра, зелёный цитоскелет</td><td>Обложка статьи, верхний блок</td></tr>
+          <tr><td>05:30</td><td>SEM: фибробласты на сети коллагеновых волокон</td><td>Рис. 5 — главный визуальный «якорь» статьи</td></tr>
+          <tr><td rowspan="2"><code>n68IfDAc8ho</code></td><td>00:30</td><td>3D-срез кожи с подписями</td><td>Рис. 1 — референс пропорций</td></tr>
+          <tr><td>02:10</td><td>Структура эпидермиса: пять слоёв, дифференцировка</td><td>Рис. 3 — референс</td></tr>
+          <tr><td><code>BHhixFvbqN4</code></td><td>02:40</td><td>Ангиоархитектоника: глубокая и поверхностная сосудистые сети</td><td>Рис. 2 — перерисовать отдельной фигурой</td></tr>
+          <tr><td><code>3JYwJ-paijY</code></td><td>10:15</td><td>Гиподерма: дольки, перемычки, три слоя</td><td>Рис. 1 — нижняя зона</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 style="font-family:var(--mono);font-size:0.66rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin:32px 0 10px;">Выгрузка кадра</h4>
+    <div class="prompt"><b># Один кадр в максимальном качестве</b>
+ffmpeg -ss 00:05:30 -i lecture.mp4 -frames:v 1 -q:v 1 -vf "scale=iw*2:ih*2:flags=lanczos" sem_fibroblasts.png
+
+<b># Серия кадров каждые 2 секунды для отбора</b>
+ffmpeg -i lecture.mp4 -vf "fps=1/2,scale=1920:-1" frames/frame_%03d.jpg</div>
+  </div>
+</section>
+
+<!-- ============ EIGHT FIGURES ============ -->
+<section style="padding-block:0 64px;">
+  <div class="wrap wrap--wide">
+    <span class="eyebrow eyebrow--muted">Шаг 2</span>
+    <h2 style="margin-bottom:12px;">Восемь фигур: что генерировать</h2>
+    <p style="color:var(--text-muted);max-width:68ch;margin-bottom:36px;">
+      Для каждой фигуры — назначение, промпт для генерации изображения
+      и спецификация анимации. Промпты написаны так, чтобы результат совпадал
+      с дизайн-системой: тёплая палитра, тонкие линии, никакой «клинической
+      синевы» и никакого 3D-пластика.
+    </p>
+
+    <!-- FIG 1 -->
+    <div class="figblock">
+      <div class="figblock__head">
+        <span class="figblock__num">01</span>
+        <h3>Поперечный срез кожи</h3>
+        <span class="chip chip--science">Собрана · inline SVG</span>
+      </div>
+      <p>Главная схема статьи. Показывает, почему крем не доходит до дермы и где живут фибробласты. Реализована как инлайновый SVG с последовательным появлением слоёв.</p>
+
+      <div class="kv">
+        <div><dt>Формат</dt><dd>inline SVG</dd></div>
+        <div><dt>Вес</dt><dd>~7 КБ</dd></div>
+        <div><dt>Длительность</dt><dd>1,6 с</dd></div>
+        <div><dt>Триггер</dt><dd>scroll, 40%</dd></div>
+      </div>
+
+      <h4>Если нужна растровая версия — промпт</h4>
+      <div class="prompt">Cross-section diagram of human skin, three layers clearly separated,
+editorial medical illustration style, warm palette: alabaster cream background,
+muted terracotta and deep forest green accents, thin 1px linework,
+no gradients beyond subtle paper texture, no 3D rendering, no glossy plastic look,
+flat vector aesthetic, scientific but warm, labels in Cyrillic removed (labels added in HTML),
+16:9 aspect ratio, high detail on collagen fiber bundles and capillary loops</div>
+
+      <h4>Анимация</h4>
+      <ul>
+        <li>Слои проявляются снизу вверх с задержкой 250 мс — читатель успевает заметить порядок.</li>
+        <li>Капиллярные петли пульсируют с периодом 3,4 с, прозрачность 0,45 → 1. Слишком быстрое мигание читается как «тревога».</li>
+        <li>Коллагеновые волокна рисуются через <code>stroke-dashoffset</code>: 2,2 с, easing ease-out. Задержка после появления слоя — 0,7 с.</li>
+        <li>Фибробласт пульсирует медленнее сосудов, в противофазе — визуально отделяет клетку от сосудистой сети.</li>
+        <li>Всё отключается при <code>prefers-reduced-motion</code>.</li>
+      </ul>
+    </div>
+
+    <!-- FIG 2 -->
+    <div class="figblock">
+      <div class="figblock__head">
+        <span class="figblock__num">02</span>
+        <h3>Сосудистые сети дермы</h3>
+        <span class="chip">Собрана · inline SVG</span>
+      </div>
+      <p>Из видео <code>BHhixFvbqN4</code>. Объясняет, почему эпидермис зависит от диффузии и почему капля крови при инъекции означает достижение сосочкового слоя. Отдельная фигура для статьи об анатомии; в статье о коллагене — не нужна.</p>
+
+      <div class="kv">
+        <div><dt>Формат</dt><dd>SVG + CSS</dd></div>
+        <div><dt>Длительность</dt><dd>3 с цикл</dd></div>
+        <div><dt>Триггер</dt><dd>scroll</dd></div>
+      </div>
+
+      <h4>Промпт</h4>
+      <div class="prompt">Diagram of skin vascular architecture, two networks: deep plexus in hypodermis
+and superficial plexus with capillary loops in dermal papillae,
+medical editorial illustration, cream background, deep green vessels,
+terracotta arterial accent, thin lines, no 3D, no shadows, flat vector</div>
+
+      <h4>Анимация</h4>
+      <ul>
+        <li>Направленный поток по сосудам: <code>stroke-dasharray</code> со смещением, 3 с, linear, бесконечно. Единственная линейная анимация в проекте — поток должен быть равномерным.</li>
+        <li>Не более двух одновременно анимированных элементов в зоне видимости: больше — визуальный шум.</li>
+      </ul>
+    </div>
+
+    <!-- FIG 3 -->
+    <div class="figblock">
+      <div class="figblock__head">
+        <span class="figblock__num">03</span>
+        <h3>Структура эпидермиса</h3>
+        <span class="chip chip--science">Собрана · inline SVG</span>
+      </div>
+      <p>Пять слоёв, дифференцировка кератиноцита, встроенные клетки. Основа для объяснения, почему топика работает в пределах эпидермиса. <strong>Собрана:</strong> кератиноцит поднимается от базального слоя и уплощается, ядро исчезает, меланоцит и клетка Лангерганса остаются на месте.</p>
+
+      <div class="kv">
+        <div><dt>Формат</dt><dd>inline SVG</dd></div>
+        <div><dt>Вес</dt><dd>11,1 КБ</dd></div>
+        <div><dt>Управление</dt><dd>play · ползунок</dd></div>
+      </div>
+
+      <h4>Промпт</h4>
+      <div class="prompt">Epidermis stratification diagram, five layers from basal to stratum corneum,
+single keratinocyte shown migrating upward and flattening at each stage,
+melanocyte and Langerhans cell embedded in basal and spinous layers,
+muted terracotta and sage palette on cream, thin outlines, editorial medical style,
+no 3D, flat vector, vertical composition 4:3</div>
+
+      <h4>Анимация — самая ценная в проекте</h4>
+      <ul>
+        <li>Один кератиноцит поднимается от базального слоя к роговому и уплощается: 6 с, easing <code>cubic-bezier(.4,0,.2,1)</code>, пауза 1 с, повтор.</li>
+        <li>Параллельно у него бледнеет ядро — визуализация потери органелл. Это точная биология и сильный визуальный приём.</li>
+        <li>Меланоцит остаётся на месте: контраст «мигрирующая клетка / резидентная клетка».</li>
+        <li>Реализация: Lottie или SVG + CSS <code>offset-path</code>. Lottie предпочтительнее — проще контролировать timeline.</li>
+      </ul>
+    </div>
+
+    <!-- FIG 4 -->
+    <div class="figblock">
+      <div class="figblock__head">
+        <span class="figblock__num">04</span>
+        <h3>Фибробласт: две функции</h3>
+        <span class="chip chip--science">Собрана · inline SVG</span>
+      </div>
+      <p>Главная фигура второго смыслового блока. Показывает синтез и деградацию как единый процесс. Исходный слайд есть в видео на 02:28 — статичная схема с выносками. <strong>Собрана:</strong> молекулы выходят из клетки поочерёдно, зелёные — синтез, терракотовые — деградация; отростки слегка натянуты как намёк на механотрансдукцию.</p>
+
+      <div class="kv">
+        <div><dt>Формат</dt><dd>inline SVG</dd></div>
+        <div><dt>Вес</dt><dd>8,6 КБ</dd></div>
+        <div><dt>Управление</dt><dd>play · ползунок</dd></div>
+      </div>
+
+      <h4>Промпт</h4>
+      <div class="prompt">Stylized fibroblast cell diagram, spindle shape with dendritic processes,
+central nucleus, rough endoplasmic reticulum and Golgi clearly drawn,
+two sets of outgoing arrows: anabolic (collagen, elastin, hyaluronic acid, growth factors)
+in deep forest green, catabolic (collagenase, elastase, hyaluronidase) in muted terracotta,
+attached to collagen fiber bundles at both poles,
+cream background, thin linework, editorial scientific illustration, no 3D, no glow</div>
+
+      <h4>Анимация</h4>
+      <ul>
+        <li>Молекулы выходят из клетки по направлению к волокнам — поочерёдно, с интервалом 300 мс.</li>
+        <li>Два цвета выполняют смысловую работу: зелёные — синтез, терракотовые — деградация. Не смешивать и не менять на «красивые» градиенты.</li>
+        <li>Отростки клетки слегка натягиваются — намёк на механотрансдукцию, без поясняющего текста.</li>
+      </ul>
+    </div>
+
+    <!-- FIG 5 -->
+    <div class="figblock">
+      <div class="figblock__head">
+        <span class="figblock__num">05</span>
+        <h3>SEM: фибробласты на коллагеновой сети</h3>
+        <span class="chip chip--science">Готова · снимок из лекции</span>
+      </div>
+      <p>Не генерировать — использовать реальный кадр с 05:30 видео <code>prZ2wZq_l6s</code>. Это сканирующая электронная микроскопия, и подлинность здесь важнее красоты. Синтетическая «похожая» картинка обесценит текст.</p>
+
+      <div class="kv">
+        <div><dt>Формат</dt><dd>WebP + AVIF</dd></div>
+        <div><dt>Ширина</dt><dd>2400 px</dd></div>
+        <div><dt>Обработка</dt><dd>без фильтров</dd></div>
+      </div>
+
+      <h4>Обработка</h4>
+      <ul>
+        <li>Только кадрирование и лёгкая коррекция уровней. Резкость и контраст не поднимать: артефакты сканирующей микроскопии — часть достоверности.</li>
+        <li>Проверить источник кадра: если он взят из публикации, нужна ссылка на неё в подписи. SEM-изображения почти всегда защищены.</li>
+        <li>Альтернатива без юридических рисков — снимок из открытого репозитория (Cell Image Library, Wikimedia, EMBL-EBI) с явной лицензией CC.</li>
+      </ul>
+
+      <h4>Анимация</h4>
+      <p>Не анимировать. Статичный микрофотографический кадр с медленным Ken Burns (scale 1 → 1,04 за 12 с) — максимум допустимого. Любое «оживление» микроскопии читается как манипуляция.</p>
+    </div>
+
+    <!-- FIG 6 -->
+    <div class="figblock">
+      <div class="figblock__head">
+        <span class="figblock__num">06</span>
+        <h3>Пять порядков сборки коллагена</h3>
+        <span class="chip chip--science">Собрана · inline SVG</span>
+      </div>
+      <p>Реализована как последовательное появление пяти стадий. Оригинал на слайде (тайм-код 10:06) — учебная схема из атласа, требует перерисовки.</p>
+
+      <div class="kv">
+        <div><dt>Формат</dt><dd>inline SVG</dd></div>
+        <div><dt>Длительность</dt><dd>3,2 с</dd></div>
+        <div><dt>Триггер</dt><dd>scroll</dd></div>
+      </div>
+
+      <h4>Ключевое требование</h4>
+      <p>Масштаб должен читаться: на первом уровне объект 1,5 нм, на пятом — пучок до 100 мкм. Нельзя рисовать их одного размера — иначе схема врёт. Решение: разные размеры плюс подписи с единицами, как сделано в прототипе.</p>
+
+      <h4>Анимация</h4>
+      <ul>
+        <li>Стадии появляются слева направо с шагом 600 мс, стрелки — за 200 мс до следующей стадии.</li>
+        <li>При наведении на стадию — подсветка соответствующей строки в таблице размеров ниже (если она есть).</li>
+        <li>Без «сборки на глазах»: читателю нужна структура, а не спецэффект.</li>
+      </ul>
+    </div>
+
+    <!-- FIG 7 -->
+    <div class="figblock">
+      <div class="figblock__head">
+        <span class="figblock__num">07</span>
+        <h3>Таймлайн неоколлагеногенеза</h3>
+        <span class="chip chip--science">Собрана · inline SVG</span>
+      </div>
+      <p>Отвечает на главный вопрос пациента: «когда будет результат». Четыре фазы, растяжка до 12 месяцев.</p>
+
+      <div class="kv">
+        <div><dt>Формат</dt><dd>SVG + CSS</dd></div>
+        <div><dt>Длительность</dt><dd>2,5 с</dd></div>
+        <div><dt>Триггер</dt><dd>scroll, 50%</dd></div>
+      </div>
+
+      <h4>Усиление, если понадобится</h4>
+      <p>Добавить подвижный маркер «сегодня» и позволить читателю перетаскивать его по шкале — тогда под таймлайном меняется текст: что происходит на этот день. Это интерактив без библиотек, на чистом CSS + 15 строк JS. Даёт сильный эффект вовлечения и не является «анимацией ради анимации».</p>
+    </div>
+
+    <!-- FIG 8 -->
+    <div class="figblock">
+      <div class="figblock__head">
+        <span class="figblock__num">08</span>
+        <h3>Гиподерма и жировые компартменты</h3>
+        <span class="chip">Собрана · inline SVG</span>
+      </div>
+      <p>Нужна для статьи о контурах лица и для объяснения, почему работа только на дерму не решает задачу объёма. Из видео <code>3JYwJ-paijY</code>, тайм-код 10:15.</p>
+
+      <div class="kv">
+        <div><dt>Формат</dt><dd>SVG</dd></div>
+        <div><dt>Длительность</dt><dd>2 с</dd></div>
+      </div>
+
+      <h4>Промпт</h4>
+      <div class="prompt">Subcutaneous fat layer diagram, adipose lobules separated by connective tissue septa,
+three sublayers indicated, warm beige and amber palette on cream,
+thin septa lines, editorial medical illustration, flat vector, no 3D gloss,
+side view cross-section, 16:9</div>
+
+      <h4>Анимация</h4>
+      <p>Только появление с прорисовкой септ. Гиподерма — статичная структура; её «движение» создало бы ложное впечатление о динамике, которой нет.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RULES ============ -->
+<section style="padding-block:0 64px;">
+  <div class="wrap wrap--wide">
+    <span class="eyebrow eyebrow--muted">Шаг 3</span>
+    <h2 style="margin-bottom:32px;">Правила, которые нельзя нарушать</h2>
+
+    <div class="grid grid--2">
+      <div class="card">
+        <h4 style="margin-top:0;">Анимация объясняет, а не украшает</h4>
+        <p style="font-size:0.9rem;color:var(--text-muted);margin:0;">
+          Каждое движение отвечает на вопрос «что происходит с чем». Если убрать
+          анимацию и смысл не потерялся — анимация лишняя. Исключение: медленный
+          Ken Burns на микрофотографии.
+        </p>
+      </div>
+      <div class="card">
+        <h4 style="margin-top:0;">Одна анимация в поле зрения</h4>
+        <p style="font-size:0.9rem;color:var(--text-muted);margin:0;">
+          Два и более одновременных движения рассеивают внимание и читаются как
+          баннерная реклама. Триггер — появление в вьюпорте, остановка — при уходе.
+        </p>
+      </div>
+      <div class="card">
+        <h4 style="margin-top:0;">Длительность 1,5–4 секунды</h4>
+        <p style="font-size:0.9rem;color:var(--text-muted);margin:0;">
+          Медленнее — читатель уходит раньше, чем поймёт. Быстрее — не успевает.
+          Бесконечные циклы допустимы только для физиологических процессов
+          (кровоток, пульсация).
+        </p>
+      </div>
+      <div class="card">
+        <h4 style="margin-top:0;">Никакой «медицинской синевы»</h4>
+        <p style="font-size:0.9rem;color:var(--text-muted);margin:0;">
+          Палитра фиксирована: тёплый крем, глубокий зелёный, терракота.
+          Синие градиенты и глянцевый 3D мгновенно превращают материал
+          в фармацевтический буклет.
+        </p>
+      </div>
+      <div class="card">
+        <h4 style="margin-top:0;">Доступность обязательна</h4>
+        <p style="font-size:0.9rem;color:var(--text-muted);margin:0;">
+          Все SVG получают <code>role="img"</code> и <code>aria-labelledby</code>
+          с текстовым описанием. <code>prefers-reduced-motion</code> отключает
+          всё движение, оставляя финальное состояние.
+        </p>
+      </div>
+      <div class="card">
+        <h4 style="margin-top:0;">Вес под контролем</h4>
+        <p style="font-size:0.9rem;color:var(--text-muted);margin:0;">
+          SVG-схема — до 15 КБ, Lottie — до 80 КБ, видео-фон — не использовать
+          вообще. Инлайновый SVG выигрывает у PNG в 20–40 раз по весу и
+          масштабируется без потерь.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECH STACK ============ -->
+<section style="padding-block:0 96px;">
+  <div class="wrap wrap--wide">
+    <span class="eyebrow eyebrow--muted">Шаг 4</span>
+    <h2 style="margin-bottom:32px;">Чем делать</h2>
+
+    <div class="table-scroll" style="margin:0;">
+      <table class="spec-table">
+        <thead>
+          <tr><th style="width:22%;">Инструмент</th><th style="width:20%;">Для чего</th><th>Почему именно это</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Figma</strong></td>
+            <td>Отрисовка схем</td>
+            <td>Вектор, экспорт в SVG с чистым кодом, совместная правка с врачом. Настроить палитру как styles — тогда цвета не «поплывут».</td>
+          </tr>
+          <tr>
+            <td><strong>After Effects + Bodymovin</strong></td>
+            <td>Lottie-анимации</td>
+            <td>Точный контроль timeline для сложных сцен (фибробласт, эпидермис). Экспорт в JSON, воспроизведение через <code>lottie-web</code> (24 КБ).</td>
+          </tr>
+          <tr>
+            <td><strong>CSS + SVG</strong></td>
+            <td>Простые анимации</td>
+            <td>Появление, прорисовка линий, пульсация. Ноль зависимостей, идеальная доступность, вес 0 КБ. Для 5 из 8 фигур этого достаточно.</td>
+          </tr>
+          <tr>
+            <td><strong>Midjourney / DALL·E</strong></td>
+            <td>Черновые концепты</td>
+            <td>Только для поиска композиции. Готовые растровые «научные» картинки от генераторов почти всегда содержат биологические ошибки — глаз специалиста это заметит сразу.</td>
+          </tr>
+          <tr>
+            <td><strong>ffmpeg</strong></td>
+            <td>Выгрузка кадров</td>
+            <td>Извлечение статичных кадров из лекций в максимальном качестве для иллюстраций.</td>
+          </tr>
+          <tr>
+            <td><strong>Squoosh / sharp</strong></td>
+            <td>Сжатие</td>
+            <td>AVIF + WebP, целевой вес одной иллюстрации — до 120 КБ.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="nuance" style="margin-top:40px;">
+      <span class="nuance__label">Порядок работ, если делать последовательно</span>
+      <p>
+        Сначала — восемь статичных SVG. Схема, которая работает без анимации, —
+        уже полноценная иллюстрация. Анимация добавляется поверх и только там,
+        где действительно объясняет процесс: фибробласт, эпидермис, таймлайн.
+        Не начинайте с анимации: переделывать структуру после риггинга
+        дороже в три раза.
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p style="font-family:var(--serif);font-size:1.6rem;color:#FAF7F2;line-height:1.2;margin:0 0 16px;">
+          Эстетический<br><em style="color:#D96B43;">Справочник</em>
+        </p>
+        <p class="footer-disclaimer" style="margin-bottom:0;">
+          Независимая база знаний по эстетической медицине. Материалы носят
+          информационно-просветительский характер и не заменяют очную консультацию врача.
+        </p>
+      </div>
+      <div>
+        <h4>База знаний</h4>
+        <ul>
+          <li><a href="kozha-arkhitektura-kollagen.html">Строение кожи</a></li>
+          <li><a href="epidermis-i-barer.html">Эпидермис и барьер</a></li>
+          <li><a href="vozrast-litsa-sloi.html">Как стареет лицо</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Процедуры</h4>
+        <ul>
+          <li><a href="katalog-procedur.html">Инъекционные методики</a></li>
+          <li><a href="nosogubnaya-skladka-i-botoks.html">Носогубная складка</a></li>
+          <li><a href="niti-ili-filler.html">Нити или филлер</a></li>
+          <li><a href="plazmoterapiya.html">Плазмотерапия</a></li>
+          <li><a href="pochemu-poyavlyayutsya-sinyaki.html">Синяки после процедур</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Проект</h4>
+        <ul>
+          <li><a href="https://t.me/drMikheevaOlga" rel="noopener">Telegram</a></li>
+          <li><a href="o-proekte.html">О проекте</a></li>
+          <li><a href="redakcionnaya-politika.html">Редакционная политика</a></li>
+          <li><a href="struktura-sajta.html">Структура сайта</a></li>
+          <li><a href="grafika-i-animaciya.html">Графика и анимация</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span>© 2026 Эстетический Справочник. Дизайн-система Moxie Care.</span>
+      <span>Не является медицинской рекомендацией</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/app.js" defer></script>
+</body>
+</html>
