@@ -40,30 +40,28 @@
 
 <main>
 
-<!-- HERO -->
-<section style="padding-block: 88px 72px;">
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
   <div class="wrap wrap--wide">
     <span class="eyebrow">Честная энциклопедия без маркетингового шума</span>
-    <h1 style="max-width:20ch;">Всё о косметологии — <em>взглядом</em> практикующего врача</h1>
-    <p class="lede" style="margin-top:28px;">
+    <h1 style="max-width:19ch;">Всё о косметологии — <em>взглядом</em> практикующего врача</h1>
+    <p class="lede" style="margin-top:26px;">
       Разбираем фундаментальное устройство кожи, золотые стандарты и громкие новинки:
       как процедуры работают на уровне тканей, кому они действительно нужны,
       а когда станут пустой тратой бюджета.
     </p>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:36px;">
-      <a class="btn btn--primary" href="kozha-arkhitektura-kollagen.html">
-        Начать с базы: кожа и коллаген
-      </a>
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="kozha-arkhitektura-kollagen.html">Начать с базы: кожа и коллаген</a>
       <a class="btn btn--ghost" href="struktura-sajta.html">Карта сайта</a>
     </div>
 
     <form class="search" data-search role="search" autocomplete="off">
       <label class="sr-only" for="q">Поиск по справочнику</label>
       <div class="search__field">
-        <svg class="search__icon" width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <circle cx="8.5" cy="8.5" r="5.75" stroke="currentColor" stroke-width="1.5"/>
-          <path d="M12.9 12.9 17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
+        <span class="search__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        </span>
         <input class="search__input" id="q" type="search" name="q"
                placeholder="Найдите процедуру, состояние или механизм" aria-describedby="q-hint">
         <button class="search__submit" type="submit">Искать</button>
@@ -80,133 +78,134 @@
   </div>
 </section>
 
-<!-- THREE PILLARS -->
-<section>
+<!-- ═══════════ ПРИНЦИП ═══════════ -->
+<section class="band band--sage">
   <div class="wrap wrap--wide">
     <span class="eyebrow eyebrow--muted">Принцип справочника</span>
-    <h2 style="max-width:24ch;margin-bottom:48px;">Анатомия важнее трендов</h2>
+    <h2 style="max-width:22ch;margin-bottom:44px;">Анатомия важнее трендов</h2>
 
     <div class="grid grid--3">
-      <div class="card card--flat">
-        <span class="meta" style="color:var(--accent);">01</span>
-        <h3 style="margin-top:12px;">Честный паспорт процедуры</h3>
-        <p style="color:var(--text-muted);font-size:0.95rem;margin:0;">
-          Реальный срок реабилитации, уровень дискомфорта и когда на самом деле
-          созревает новый коллаген — 3–4 месяца, а не «через неделю».
+      <article class="card">
+        <span class="chip chip--science">01 · Фундамент</span>
+        <h3 style="margin-top:14px;">Сначала ткань, потом процедура</h3>
+        <p style="color:var(--ink-soft);font-size:.94rem;margin:0;">
+          Прежде чем обсуждать аппарат или препарат, нужно понять, на какой слой он действует.
+          Иначе разговор превращается в перечисление брендов.
         </p>
-      </div>
-      <div class="card card--flat">
-        <span class="meta" style="color:var(--accent);">02</span>
-        <h3 style="margin-top:12px;">Секция «Врачебный нюанс»</h3>
-        <p style="color:var(--text-muted);font-size:0.95rem;margin:0;">
-          Почему поверхностные папулы не достают до фибробластов и почему процедуры
-          не работают в условиях дефицитов.
+      </article>
+      <article class="card">
+        <span class="chip chip--science">02 · Честность</span>
+        <h3 style="margin-top:14px;">Маркер уровня доказательности</h3>
+        <p style="color:var(--ink-soft);font-size:.94rem;margin:0;">
+          У каждого крупного утверждения стоит пометка: проверено, скорее да или спорно.
+          Между этими уровнями и происходит подмена смысла в рекламе.
         </p>
-      </div>
-      <div class="card card--flat">
-        <span class="meta" style="color:var(--accent);">03</span>
-        <h3 style="margin-top:12px;">Прямая связь</h3>
-        <p style="color:var(--text-muted);font-size:0.95rem;margin:0;">
-          Если после чтения остался вопрос по вашей ситуации — Telegram
-          одним кликом, без анкет и воронок.
+      </article>
+      <article class="card">
+        <span class="chip chip--science">03 · Практика</span>
+        <h3 style="margin-top:14px;">Что это значит для вас</h3>
+        <p style="color:var(--ink-soft);font-size:.94rem;margin:0;">
+          Каждый разбор заканчивается тем, какие вопросы задать на приёме и какие ожидания
+          скорректировать до процедуры, а не после.
         </p>
-      </div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- FEATURED ARTICLE -->
-<section>
+<!-- ═══════════ МАТЕРИАЛЫ ═══════════ -->
+<section class="band">
   <div class="wrap wrap--wide">
-    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap;margin-bottom:32px;">
+    <div style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px;margin-bottom:36px;">
       <div>
-        <span class="eyebrow eyebrow--muted">Материал недели</span>
+        <span class="eyebrow eyebrow--muted">Материалы</span>
         <h2 style="margin:0;">С чего начать</h2>
       </div>
-      <a href="baza-kozhi.html" style="font-size:0.9rem;">Все материалы раздела →</a>
+      <a class="btn btn--ghost btn--sm" href="struktura-sajta.html">Все материалы →</a>
     </div>
 
-    <a class="card" href="kozha-arkhitektura-kollagen.html" style="display:block;text-decoration:none;color:inherit;padding:56px;">
-      <div class="chip-row" style="margin-bottom:24px;">
-        <span class="chip chip--science">База о коже</span>
-        <span class="chip">18 минут чтения</span>
-        <span class="chip">12 источников</span>
-      </div>
-      <h2 style="max-width:26ch;margin-bottom:20px;">Кожа: архитектура, фибробласт и сборка коллагена</h2>
-      <p style="color:var(--text-muted);max-width:62ch;font-size:1.02rem;margin-bottom:28px;">
-        Три слоя с разными правилами, клетка, которая одновременно строит и разбирает
-        матрикс, пять порядков сборки коллагенового волокна и честная хронология
-        неоколлагеногенеза. С маркерами уровня доказательности — чтобы отличать
-        установленный факт от гипотезы.
-      </p>
-      <span class="btn btn--primary">Читать разбор</span>
-    </a>
-  </div>
-</section>
-
-<!-- CATEGORIES -->
-<section>
-  <div class="wrap wrap--wide">
-    <span class="eyebrow eyebrow--muted">Разделы</span>
-    <h2 style="margin-bottom:40px;">Навигатор по базе знаний</h2>
-
-    <div class="grid grid--3">
-      <a class="article-card" href="baza-kozhi.html">
-        <span class="chip chip--science">База о коже</span>
-        <h3>Строение и физиология</h3>
-        <p>Эпидермис, дерма, гиподерма, барьер, микробиота, фибробласт и матрикс.</p>
-        <span class="article-card__meta meta">14 материалов</span>
-      </a>
-      <a class="article-card" href="katalog-procedur.html">
-        <span class="chip">Каталог</span>
-        <h3>Инъекционная косметология</h3>
-        <p>Ботулинотерапия, филлеры, биоревитализация, коллагеностимуляторы, полинуклеотиды.</p>
-        <span class="article-card__meta meta">22 процедуры</span>
-      </a>
-      <a class="article-card" href="katalog-procedur.html">
-        <span class="chip">Каталог</span>
-        <h3>Аппаратные технологии</h3>
-        <p>Игольчатый RF, фокусированный ультразвук, лазеры, фотодинамика.</p>
-        <span class="article-card__meta meta">16 процедур</span>
-      </a>
-      <a class="article-card" href="katalog-procedur.html">
-        <span class="chip">Каталог</span>
-        <h3>Эстетика и пилинги</h3>
-        <p>Кислотные пилинги, уходовые протоколы, работа с барьером и пигментом.</p>
-        <span class="article-card__meta meta">11 процедур</span>
-      </a>
-      <a class="article-card" href="vrachebnye-razbory.html">
-        <span class="chip">Разборы</span>
-        <h3>Врачебные разборы</h3>
-        <p>Клинические случаи, тактика выбора методики, чего не делать и почему.</p>
-        <span class="article-card__meta meta">8 разборов</span>
-      </a>
-      <a class="article-card" href="novosti-2026.html">
-        <span class="chip chip--warn">Новинки 2026</span>
-        <h3>Новинки и тренды</h3>
-        <p>Что реально ново, что переупаковано, а что пока только в пресс-релизах.</p>
-        <span class="article-card__meta meta">6 материалов</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section>
-  <div class="wrap wrap--wide">
-    <div class="card" style="background:var(--brand);border-color:var(--brand);padding:56px;color:#FAF7F2;">
-      <div class="split-cta">
-        <div>
-          <span class="eyebrow" style="color:rgba(250,247,242,0.6);">Живая база знаний</span>
-          <h2 style="color:#FAF7F2;margin-bottom:18px;">Не нашли разбор интересующей процедуры?</h2>
-          <p style="color:rgba(250,247,242,0.72);margin:0;max-width:52ch;">
-            Портал пополняется авторскими статьями. Если сомневаетесь, подойдёт ли
-            методика вашему типу лица, — напишите, подскажу лично или подготовлю
-            подробный разбор на сайте.
-          </p>
+    <div class="grid grid--2">
+      <a class="article-card article-card--feature" href="kozha-arkhitektura-kollagen.html">
+        <div class="chip-row" style="margin-bottom:8px;">
+          <span class="chip chip--science">Long read</span>
+          <span class="chip">18 минут</span>
+          <span class="chip">12 источников</span>
         </div>
-        <div style="text-align:right;">
-          <a class="btn" style="background:#FAF7F2;color:var(--brand);border-color:#FAF7F2;" href="https://t.me/drMikheevaOlga" rel="noopener">Написать в Telegram</a>
+        <h3>Кожа: архитектура, фибробласт и сборка коллагена</h3>
+        <p style="font-size:1rem;">
+          Три слоя с разными правилами. Клетка, которая строит и разбирает матрикс одновременно.
+          Пять порядков сборки волокна и хронология неоколлагеногенеза 3–4 месяца.
+        </p>
+        <span class="article-card__meta meta">Готовый материал · с чего начать</span>
+      </a>
+
+      <a class="article-card" href="vozrast-litsa-sloi.html">
+        <span class="chip chip--science">Возраст</span>
+        <h3>Как стареет лицо: четыре слоя и три сценария</h3>
+        <p>Кожа, жир, мышца и кость меняются с разной скоростью. Отсюда — разница в том, что помогает.</p>
+        <span class="article-card__meta meta">Объяснение</span>
+      </a>
+
+      <a class="article-card" href="nosogubnaya-skladka-i-botoks.html">
+        <span class="chip chip--science">Анатомия</span>
+        <h3>Носогубная складка: что двигает ткань</h3>
+        <p>Четыре слоя под одной линией и три разных подхода к ней.</p>
+        <span class="article-card__meta meta">Разбор</span>
+      </a>
+
+      <a class="article-card" href="niti-ili-filler.html">
+        <span class="chip chip--science">Сравнение</span>
+        <h3>Нити или филлер: два инструмента</h3>
+        <p>Нити укрепляют, филлер восполняет. Вопрос «что лучше» не имеет ответа без задачи.</p>
+        <span class="article-card__meta meta">Объяснение</span>
+      </a>
+
+      <a class="article-card" href="plazmoterapiya.html">
+        <span class="chip chip--science">Аутологичные</span>
+        <h3>Плазмотерапия: своя кровь и сигнал для кожи</h3>
+        <p>Что происходит в пробирке и на что реально рассчитывать.</p>
+        <span class="article-card__meta meta">Объяснение</span>
+      </a>
+
+      <a class="article-card" href="pochemu-poyavlyayutsya-sinyaki.html">
+        <span class="chip chip--science">Кровь</span>
+        <h3>Почему появляются синяки и меняют цвет</h3>
+        <p>Распад гемоглобина как источник цвета: календарь и главная ошибка первого дня.</p>
+        <span class="article-card__meta meta">Объяснение</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ТЁМНАЯ ПОЛОСА ═══════════ -->
+<section class="band band--ink">
+  <div class="wrap wrap--wide">
+    <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,4vw,64px);align-items:center;" class="ink-split">
+      <div>
+        <span class="eyebrow" style="background:rgba(251,246,232,.12);border-color:rgba(251,246,232,.24);color:#F2D9A8;">Без рекламы</span>
+        <h2 style="max-width:18ch;">Здесь не продают процедуры. Здесь объясняют механизмы.</h2>
+        <p style="max-width:52ch;">
+          Справочник собран врачом и не связан с клиниками и дистрибьюторами.
+          Если метод не имеет доказательств — так и написано.
+        </p>
+        <a class="btn" href="o-proekte.html" style="background:#F2D9A8;color:#1D4B37;margin-top:10px;">О проекте</a>
+      </div>
+      <div class="grid grid--2" style="gap:14px;">
+        <div style="background:rgba(251,246,232,.07);border:1px solid rgba(251,246,232,.16);border-radius:16px;padding:20px;">
+          <div style="font-family:var(--serif);font-size:2.4rem;line-height:1;color:#F2D9A8;">18</div>
+          <div style="font-size:.82rem;color:rgba(239,232,214,.75);margin-top:6px;">материалов</div>
+        </div>
+        <div style="background:rgba(251,246,232,.07);border:1px solid rgba(251,246,232,.16);border-radius:16px;padding:20px;">
+          <div style="font-family:var(--serif);font-size:2.4rem;line-height:1;color:#F2D9A8;">28</div>
+          <div style="font-size:.82rem;color:rgba(239,232,214,.75);margin-top:6px;">схем</div>
+        </div>
+        <div style="background:rgba(251,246,232,.07);border:1px solid rgba(251,246,232,.16);border-radius:16px;padding:20px;">
+          <div style="font-family:var(--serif);font-size:2.4rem;line-height:1;color:#F2D9A8;">3</div>
+          <div style="font-size:.82rem;color:rgba(239,232,214,.75);margin-top:6px;">уровня доказательности</div>
+        </div>
+        <div style="background:rgba(251,246,232,.07);border:1px solid rgba(251,246,232,.16);border-radius:16px;padding:20px;">
+          <div style="font-family:var(--serif);font-size:2.4rem;line-height:1;color:#F2D9A8;">0</div>
+          <div style="font-size:.82rem;color:rgba(239,232,214,.75);margin-top:6px;">рекламных постов</div>
         </div>
       </div>
     </div>
@@ -220,7 +219,7 @@
     <div class="footer-grid">
       <div>
         <p style="font-family:var(--serif);font-size:1.6rem;color:#FAF7F2;line-height:1.2;margin:0 0 16px;">
-          Эстетический<br><em style="color:#D96B43;">Справочник</em>
+          Эстетический<br><em style="color:#E4A53C;">Справочник</em>
         </p>
         <p class="footer-disclaimer" style="margin-bottom:0;">
           Независимая база знаний по эстетической медицине. Материалы носят

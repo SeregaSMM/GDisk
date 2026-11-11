@@ -370,7 +370,10 @@
   };
 
   function initFigures() {
-    var roots = document.querySelectorAll('[data-fig]');
+    /* v6: схемы статичные — анимация и ползунок отключены.
+       Атрибуты data-at / data-draw остаются в разметке, но theme.css
+       принудительно показывает все элементы в конечном состоянии. */
+    var roots = [];
     Array.prototype.forEach.call(roots, function (r) {
       try {
         new FigureRoot(r);
