@@ -1,7 +1,3 @@
 User-agent: *
 Allow: /
-
-# служебные страницы
-Disallow: /404.html
-
-Sitemap: https://example.com/sitemap.xml
+Sitemap: https://visage.moscow/sitemap.xml

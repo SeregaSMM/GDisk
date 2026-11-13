@@ -1,0 +1,249 @@
+{
+  "structural_issues": [],
+  "javascript_errors": [],
+  "pages": [
+    {
+      "page": "404.html",
+      "faq": 0,
+      "grid": false
+    },
+    {
+      "page": "baza-kozhi.html",
+      "faq": 0,
+      "grid": false
+    },
+    {
+      "page": "derma-i-fibroblasty.html",
+      "faq": 4,
+      "grid": true
+    },
+    {
+      "page": "epidermis-i-barer.html",
+      "faq": 0,
+      "grid": true
+    },
+    {
+      "page": "grafika-i-animaciya.html",
+      "faq": 0,
+      "grid": false
+    },
+    {
+      "page": "index.html",
+      "faq": 0,
+      "grid": false
+    },
+    {
+      "page": "katalog-procedur.html",
+      "faq": 0,
+      "grid": false
+    },
+    {
+      "page": "kozha-kak-organ.html",
+      "faq": 4,
+      "grid": true
+    },
+    {
+      "page": "krovosnabzhenie-i-praktika.html",
+      "faq": 5,
+      "grid": true
+    },
+    {
+      "page": "neokollagenogenez.html",
+      "faq": 4,
+      "grid": true
+    },
+    {
+      "page": "niti-ili-filler.html",
+      "faq": 0,
+      "grid": true
+    },
+    {
+      "page": "nosogubnaya-skladka-i-botoks.html",
+      "faq": 0,
+      "grid": true
+    },
+    {
+      "page": "novosti-2026.html",
+      "faq": 0,
+      "grid": false
+    },
+    {
+      "page": "o-proekte.html",
+      "faq": 0,
+      "grid": false
+    },
+    {
+      "page": "plazmoterapiya.html",
+      "faq": 0,
+      "grid": true
+    },
+    {
+      "page": "pochemu-poyavlyayutsya-sinyaki.html",
+      "faq": 0,
+      "grid": true
+    },
+    {
+      "page": "redakcionnaya-politika.html",
+      "faq": 0,
+      "grid": false
+    },
+    {
+      "page": "struktura-sajta.html",
+      "faq": 0,
+      "grid": false
+    },
+    {
+      "page": "vozrast-litsa-sloi.html",
+      "faq": 0,
+      "grid": true
+    },
+    {
+      "page": "vrachebnye-razbory.html",
+      "faq": 0,
+      "grid": false
+    }
+  ],
+  "desktop": [
+    {
+      "page": "404.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": null,
+      "h1": 1
+    },
+    {
+      "page": "baza-kozhi.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": null,
+      "h1": 1
+    },
+    {
+      "page": "derma-i-fibroblasty.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": "260px 756px 280px",
+      "h1": 1
+    },
+    {
+      "page": "epidermis-i-barer.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": "260px 756px 280px",
+      "h1": 1
+    },
+    {
+      "page": "grafika-i-animaciya.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": null,
+      "h1": 1
+    },
+    {
+      "page": "index.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": null,
+      "h1": 1
+    },
+    {
+      "page": "katalog-procedur.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": null,
+      "h1": 1
+    },
+    {
+      "page": "kozha-kak-organ.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": "260px 756px 280px",
+      "h1": 1
+    },
+    {
+      "page": "krovosnabzhenie-i-praktika.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": "260px 756px 280px",
+      "h1": 1
+    },
+    {
+      "page": "neokollagenogenez.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": "260px 756px 280px",
+      "h1": 1
+    },
+    {
+      "page": "niti-ili-filler.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": "260px 756px 280px",
+      "h1": 1
+    },
+    {
+      "page": "nosogubnaya-skladka-i-botoks.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": "260px 756px 280px",
+      "h1": 1
+    },
+    {
+      "page": "novosti-2026.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": null,
+      "h1": 1
+    },
+    {
+      "page": "o-proekte.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": null,
+      "h1": 1
+    },
+    {
+      "page": "plazmoterapiya.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": "260px 756px 280px",
+      "h1": 1
+    },
+    {
+      "page": "pochemu-poyavlyayutsya-sinyaki.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": "260px 756px 280px",
+      "h1": 1
+    },
+    {
+      "page": "redakcionnaya-politika.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": null,
+      "h1": 1
+    },
+    {
+      "page": "struktura-sajta.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": null,
+      "h1": 1
+    },
+    {
+      "page": "vozrast-litsa-sloi.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": "260px 756px 280px",
+      "h1": 1
+    },
+    {
+      "page": "vrachebnye-razbory.html",
+      "overflow": false,
+      "bg": "rgb(244, 246, 249)",
+      "grid": null,
+      "h1": 1
+    }
+  ],
+  "interactive_tests": "search, 4 tabs, FAQ open/close, iron table, PRO wrong/correct/persist: PASS"
+}
