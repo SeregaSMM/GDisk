@@ -51,5 +51,6 @@ figure{margin:28px 0;border:1px solid #E5E0D5;border-radius:8px;background:white
 @media(max-width:767px){.portal-home{padding:24px 16px}.brand-title{font-size:21px}.header-inner,.nav-row,.portal-search{max-width:100%}}
 
 .faq-accordion[open]>.faq-question .faq-icon{font-size:24px}.faq-accordion[open]>.faq-question .faq-icon::after{content:none}.reference-accordion .faq-icon::before{content:none}
-.btn { display: inline-block; }
-.lede { margin-bottom: 24px; }
+
+/* 404 and button spacing fix */
+.btn{display:inline-block}.error-page .lede{margin-bottom:28px}
