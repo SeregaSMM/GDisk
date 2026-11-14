@@ -1,3 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /404.html
+Disallow: /vrachebnye-razbory.html
+Disallow: /grafika-i-animaciya.html
+Disallow: /struktura-sajta.html
+Disallow: /kozha-arkhitektura-kollagen.html
+
 Sitemap: https://visage.moscow/sitemap.xml

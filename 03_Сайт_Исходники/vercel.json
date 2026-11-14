@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/kozha-arkhitektura-kollagen.html",
+      "destination": "/baza-kozhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}
