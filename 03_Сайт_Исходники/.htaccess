@@ -1,0 +1,25 @@
+RewriteEngine On
+
+# 1. Принудительный редирект на HTTPS
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 2. Постоянный 301-редирект со старого адреса статьи
+Redirect 301 /kozha-arkhitektura-kollagen.html https://visage.moscow/baza-kozhi.html
+
+# 3. Красивая страница ошибки 404
+ErrorDocument 404 /404.html
+
+# 4. Кодировка UTF-8 по умолчанию
+AddDefaultCharset UTF-8
+
+# 5. Кэширование графики, стилей и скриптов для быстрой загрузки
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+</IfModule>
